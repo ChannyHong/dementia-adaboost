@@ -38,7 +38,7 @@ The extracted features are as the following:
 
 With the feature_set_dem.csv file in the same folder, run the following script to adaptively boost the random decision forest algorithm using a partition of the samples and also to evaluate the hypothesis against another. 
 
-Within the script, the "num_train_per_label" and the "num_test_per_label" parameters can be changed.
+Within the script, the "num_train_per_label" and the "num_test_per_label" parameters can be tuned to change the number of training data and testing data used. The same number of examples for both labels (0: non-dementia, 1: dementia) were used in this project.
 ```
 python adaboost.py
 ```
