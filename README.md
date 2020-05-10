@@ -28,9 +28,9 @@ extract_features.py \
 
 The extracted features are as the following:
 
-Numeric features: "ttr", "R", "ARI", "CLI", "prp_noun_ratio", "word_sentence_ratio", "MLU", "SIM_score", "Bruten"
+*Numeric features*: "ttr", "R", "ARI", "CLI", "prp_noun_ratio", "word_sentence_ratio", "MLU", "SIM_score", "Bruten"
 
-Ranked features: "num_concepts_mentioned", "prp_count", "Gerund_count", "NP_count", "VP_count", "count_pauses", "count_unintelligible", "count_trailing", "count_repetitions"
+*Ranked features*: "num_concepts_mentioned", "prp_count", "Gerund_count", "NP_count", "VP_count", "count_pauses", "count_unintelligible", "count_trailing", "count_repetitions"
 
 
 
