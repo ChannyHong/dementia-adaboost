@@ -6,7 +6,7 @@ This is the project page for Channy Hong (60977917)'s COMPSCI 228: Computational
 
 The [Pitt Corpus](https://dementia.talkbank.org/access/English/Pitt.html) can be downloaded from the [DementiaBank database](https://dementia.talkbank.org/) upon request.
 
-First, we run the following scripts from chirag126's [Automatic Alzheimer Detection](https://github.com/chirag126/Automatic_Alzheimer_Detection) project to pre-process the raw files into the various linguistic features of our interest. These two scripts process through the .cha files within the "cookie" folders of the data to create the following metadata files: metadata_allvisits.csv & metadata_withPauses.csv.
+First, we run the following scripts from chirag126's [Automatic Alzheimer Detection](https://github.com/chirag126/Automatic_Alzheimer_Detection) project to pre-process the raw files to extract the various linguistic features of our interest. These two scripts process through the .cha files within the "cookie" folders of the data to create the following metadata files: metadata_allvisits.csv & metadata_withPauses.csv.
 
 ```
 python3 preprocess.py \
