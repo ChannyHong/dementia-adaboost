@@ -1,5 +1,5 @@
 """
-Author: Channy Hong
+Author: Channy Hong (HUID: 60977917)
 """
 
 import csv
@@ -10,21 +10,16 @@ import random
 
 
 
-
 #==============================================================================
 #  Hyperparameters
 #==============================================================================
 
 
-
-T = 50
 ranked_categories = ["num_concepts_mentioned", "prp_count", "Gerund_count", "NP_count", "VP_count", "count_pauses", "count_unintelligible", "count_trailing", "count_repetitions"]
 numeric_categories = ["ttr", "R", "ARI", "CLI", "prp_noun_ratio", "word_sentence_ratio", "MLU", "SIM_score", "Bruten"]
 
-num_train_per_label = 150
-num_test_per_label = 50
-
-
+num_train_per_label = 200
+num_test_per_label = 40
 
 
 
@@ -211,11 +206,6 @@ for _ in range(len(all_categories)):
 		elif category in ranked_categories:
 			threshold, positive_direction, gini = gini_ranked(category, category_data)
 
-		# threshold: floating value
-		# positive_direction: either 'lesseq' or 'greater' (for the 1 y_label classification)
-		# gini: floating value -> ___
-		# weight: floating value -> ____
-
 		temporary_stumps.append({"category": category, "threshold": threshold, "positive_direction": positive_direction, "gini": gini, "weight": None})
 
 	# reorder stumps in order of the gini scores and pick the stump with the lowest gini index
@@ -225,8 +215,7 @@ for _ in range(len(all_categories)):
 	# then delete the chosen stump from all_categories 
 	all_categories.remove(stump["category"])
 
-	# CALCULATE error, alpha
-
+	# CALCULATE error & alpha
 	error = None
 	num_correct = 0
 	num_incorrect = 0
@@ -247,6 +236,7 @@ for _ in range(len(all_categories)):
 
 	error = float(num_incorrect) / (float(num_correct) + float(num_incorrect))
 
+	# Take care of edge cases to avoid division errors
 	if error < 0.01:
 		error = 0.01
 	elif error > 0.99:
@@ -294,7 +284,6 @@ for _ in range(len(all_categories)):
 		while (cumul_weight <= random_num):
 			cumul_weight += current_data[counter+1]["weight"]
 			counter += 1
-			#print counter, cumul_weight, random_num
 
 		# add this current data
 		new_dataset.append(current_data[counter].copy())
@@ -313,14 +302,9 @@ for _ in range(len(all_categories)):
 
 
 
-
-
-
 #==============================================================================
-#   EVALUATION: with the resulting decision tree!!!
+#   EVALUATION: with the resulting decision tree (final_stumps)!!!
 #==============================================================================
-
-
 
 random.shuffle(test_data)
 
@@ -351,7 +335,7 @@ for test_datapoint in test_data:
 	else:
 		guess = 0
 
-	if guess is test_datapoint["y_label"]:
+	if guess == test_datapoint["y_label"]:
 		eval_num_correct += 1.0
 	else:
 		eval_num_incorrect += 1.0
@@ -361,6 +345,11 @@ eval_accuracy = float(eval_num_correct) / (float(eval_num_correct) + float(eval_
 
 print eval_accuracy
 print eval_num_correct, eval_num_incorrect
+
+
+
+
+
 
 
 
